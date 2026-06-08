@@ -10,11 +10,14 @@ This project follows a simple changelog structure inspired by [Keep a Changelog]
 
 ### Added
 
+* Added `docs/constitution-alignment-model.md`, defining the semantic validation layer for checking institutional consistency among Defense Trace Records, Defense Agent Ranks, and the Cyber Defense Constitution.
 * Added `scripts/check_constitution_alignment.py` to perform semantic alignment checks across the core Defense Court Protocol examples.
 * Added constitution alignment validation to `.github/workflows/validate-examples.yml`.
 * Added Semantic Validation documentation to `README.md`.
 
 ### Changed
+
+* Updated documentation to connect Semantic Validation with the Constitution Alignment Model.
 
 * Updated `.github/workflows/validate-examples.yml` to run both:
 
