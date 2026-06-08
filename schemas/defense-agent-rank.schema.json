@@ -1,0 +1,208 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/defense-agent-rank.schema.json",
+  "title": "Defense Agent Rank",
+  "description": "A schema for defining defensive AI agent ranks, roles, authority scopes, and responsibility boundaries under the Defense Court Protocol.",
+  "type": "object",
+  "required": [
+    "defense_agent_rank"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "defense_agent_rank": {
+      "type": "object",
+      "required": [
+        "protocol",
+        "version",
+        "rank_system",
+        "principles",
+        "ranks"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "protocol": {
+          "type": "string",
+          "const": "Defense Court Protocol"
+        },
+        "version": {
+          "type": "string",
+          "pattern": "^[0-9]+\\.[0-9]+$"
+        },
+        "rank_system": {
+          "type": "string",
+          "const": "AI Twelve-Rank Defense Agent Architecture"
+        },
+        "principles": {
+          "type": "array",
+          "description": "Core principles governing the defense rank system.",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "enum": [
+              "rank_means_responsibility_not_status",
+              "authority_requires_scope",
+              "governance_can_pause_execution",
+              "verification_can_block_recovery",
+              "human_review_preserves_legitimacy",
+              "trace_required_for_significant_action"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "ranks": {
+          "type": "array",
+          "description": "List of defensive agent ranks and their responsibilities.",
+          "minItems": 12,
+          "maxItems": 12,
+          "items": {
+            "type": "object",
+            "required": [
+              "rank",
+              "role",
+              "category",
+              "responsibility",
+              "authority_scope",
+              "allowed_actions",
+              "requires_trace",
+              "requires_human_review_for"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "rank": {
+                "$ref": "#/$defs/defense_rank"
+              },
+              "role": {
+                "type": "string",
+                "description": "Operational role assigned to this rank."
+              },
+              "category": {
+                "type": "string",
+                "description": "Functional category of the defense rank.",
+                "enum": [
+                  "orchestration",
+                  "coordination",
+                  "human_impact",
+                  "context",
+                  "protocol",
+                  "procedure",
+                  "verification",
+                  "testing",
+                  "governance",
+                  "risk_filtering",
+                  "strategy",
+                  "research"
+                ]
+              },
+              "responsibility": {
+                "type": "string",
+                "description": "Primary responsibility of this rank."
+              },
+              "authority_scope": {
+                "type": "array",
+                "description": "Authorized scope of action for this rank.",
+                "minItems": 1,
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "system_wide_coordination",
+                    "incident_coordination",
+                    "task_routing",
+                    "human_impact_assessment",
+                    "user_context_assessment",
+                    "protocol_management",
+                    "runbook_management",
+                    "forensic_verification",
+                    "detection_testing",
+                    "governance_review",
+                    "risk_screening",
+                    "threat_strategy",
+                    "threat_research",
+                    "containment_review",
+                    "recovery_review",
+                    "human_notification",
+                    "trace_review"
+                  ]
+                },
+                "uniqueItems": true
+              },
+              "allowed_actions": {
+                "type": "array",
+                "description": "Action classes this rank may perform or recommend.",
+                "minItems": 1,
+                "items": {
+                  "$ref": "#/$defs/defense_action"
+                },
+                "uniqueItems": true
+              },
+              "requires_trace": {
+                "type": "boolean",
+                "description": "Whether significant actions by this rank require a Defense Trace Record."
+              },
+              "requires_human_review_for": {
+                "type": "array",
+                "description": "Action classes that require human review when performed or recommended by this rank.",
+                "items": {
+                  "$ref": "#/$defs/human_review_trigger"
+                },
+                "uniqueItems": true
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "defense_rank": {
+      "type": "string",
+      "enum": [
+        "Daitoku",
+        "Shotoku",
+        "Daijin",
+        "Shojin",
+        "Dairei",
+        "Shorei",
+        "Daishin",
+        "Shoshin",
+        "Daigi",
+        "Shogi",
+        "Daichi",
+        "Shochi"
+      ]
+    },
+    "defense_action": {
+      "type": "string",
+      "enum": [
+        "observe",
+        "warn",
+        "contain",
+        "quarantine",
+        "suspend",
+        "recover",
+        "disclose",
+        "emergency_containment",
+        "verify",
+        "review",
+        "escalate",
+        "notify",
+        "document",
+        "research",
+        "recommend"
+      ]
+    },
+    "human_review_trigger": {
+      "type": "string",
+      "enum": [
+        "irreversible_action",
+        "critical_incident",
+        "public_disclosure",
+        "legal_notification",
+        "production_wide_shutdown",
+        "permanent_sanction",
+        "recovery_from_critical_compromise",
+        "cross_system_credential_revocation"
+      ]
+    }
+  }
+}
+
