@@ -118,6 +118,9 @@ These principles ensure that AI cyber defense can be fast without becoming lawle
 * [Cyber Defense Seventeen Articles](docs/cyber-defense-seventeen-articles.md)
   Defines the Seventeen-Article Cyber Defense Charter as the behavioral, procedural, ethical, traceability, and safety constitution of the Defense Court Protocol.
 
+* [Constitution Alignment Model](docs/constitution-alignment-model.md)
+  Defines the semantic validation layer of the Defense Court Protocol, checking institutional consistency among Trace Records, Agent Ranks, and the Cyber Defense Constitution.
+
 ---
 
 ## Core Pillars
@@ -302,6 +305,7 @@ docs/
   defense-trace-protocol.md
   defense-agent-rank-architecture.md
   cyber-defense-seventeen-articles.md
+  constitution-alignment-model.md
 
 schemas/
   defense-trace-record.schema.json
@@ -426,6 +430,10 @@ Critical incidents do not bypass human review.
 Recovery actions require proper governance approval.
 Constitution module definitions match article module declarations.
 ```
+
+For the conceptual model behind semantic validation, see:
+
+* [Constitution Alignment Model](docs/constitution-alignment-model.md)
 
 Run semantic validation:
 
@@ -676,4 +684,3 @@ The Semantic Alignment Checker verifies institutional consistency.
 ```
 
 The result is an AI cyber defense system that can act quickly without becoming lawless, and remain governed without becoming too slow.
-
