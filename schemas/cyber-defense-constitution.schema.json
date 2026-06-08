@@ -209,6 +209,7 @@
       "enum": [
         "trace_id",
         "timestamp",
+        "severity",
         "incident_type",
         "affected_scope",
         "acting_agent",
