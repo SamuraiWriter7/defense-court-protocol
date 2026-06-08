@@ -10,6 +10,49 @@ This project follows a simple changelog structure inspired by [Keep a Changelog]
 
 ### Added
 
+* Added `scripts/check_constitution_alignment.py` to perform semantic alignment checks across the core Defense Court Protocol examples.
+* Added constitution alignment validation to `.github/workflows/validate-examples.yml`.
+* Added Semantic Validation documentation to `README.md`.
+
+### Changed
+
+* Updated `.github/workflows/validate-examples.yml` to run both:
+
+  * schema validation with `scripts/validate_examples.py`
+  * semantic alignment validation with `scripts/check_constitution_alignment.py`
+
+* Updated `README.md` to describe the two-layer validation model:
+
+  * Schema Validation
+  * Semantic Validation
+
+* Updated the validation model to distinguish structural correctness from institutional consistency.
+
+### Validation
+
+* Added semantic checks for alignment among:
+
+  * `examples/defense-trace-record.example.yaml`
+  * `examples/defense-agent-rank.example.yaml`
+  * `examples/cyber-defense-constitution.example.yaml`
+
+* Added checks for:
+
+  * applicable article IDs referenced by Defense Trace Records
+  * article name consistency between Trace Records and the Cyber Defense Constitution
+  * acting agent rank existence in the Defense Agent Rank document
+  * rank authority consistency
+  * emergency containment requirements
+  * critical incident human review requirements
+  * recovery governance requirements
+  * module-to-article alignment inside the Cyber Defense Constitution
+
+---
+
+## [0.1.0-candidate] - 2026-06-08
+
+### Added
+
 * Added `docs/defense-court-protocol.md` as the core documentation for the Defense Court Protocol.
 
 * Added `docs/defense-trace-protocol.md`, defining the traceability, accountability, verification, recovery, governance, and human review model for defensive AI actions.
@@ -48,14 +91,24 @@ This project follows a simple changelog structure inspired by [Keep a Changelog]
 * Updated `schemas/cyber-defense-constitution.schema.json` to allow `severity` as a valid trace requirement.
 * Resolved schema validation mismatch between `cyber-defense-constitution.example.yaml` and `cyber-defense-constitution.schema.json`.
 
----
+### Documentation
 
-## [0.1.0-candidate] - 2026-06-08
+* Added the core Defense Court Protocol documentation.
+* Added trace protocol documentation.
+* Added rank architecture documentation.
+* Added cyber defense Seventeen Articles documentation.
+* Added README documentation for repository structure, validation, roadmap, and design philosophy.
 
-### Added
+### Validation
 
-* Initial candidate structure for the Defense Court Protocol.
-* Defined the Defense Court Protocol as a governance kernel for AI cyber defense.
+* Added JSON Schema validation for:
+
+  * `examples/defense-trace-record.example.yaml`
+  * `examples/defense-agent-rank.example.yaml`
+  * `examples/cyber-defense-constitution.example.yaml`
+
+* Added GitHub Actions workflow for automated validation.
+
 * Introduced the core operating model:
 
 ```text
@@ -88,29 +141,11 @@ No recovery without verification.
 No public-risk incident without disclosure path.
 ```
 
-### Documentation
-
-* Added the core Defense Court Protocol documentation.
-* Added trace protocol documentation.
-* Added rank architecture documentation.
-* Added cyber defense Seventeen Articles documentation.
-* Added README documentation for repository structure, validation, roadmap, and design philosophy.
-
-### Validation
-
-* Added JSON Schema validation for:
-
-  * `examples/defense-trace-record.example.yaml`
-  * `examples/defense-agent-rank.example.yaml`
-  * `examples/cyber-defense-constitution.example.yaml`
-
-* Added GitHub Actions workflow for automated validation.
-
 ---
 
 ## Notes
 
-The Defense Court Protocol is defensive, governance-oriented, traceable, and human-reviewed.
+The Defense Court Protocol is defensive, governance-oriented, traceable, semantically validated, and human-reviewed.
 
 This repository does not provide:
 
@@ -124,4 +159,4 @@ This repository does not provide:
 * fully autonomous public disclosure
 * fully autonomous irreversible action
 
-The purpose of this project is to define a structured governance model for AI cyber defense systems that can respond quickly without becoming lawless, and remain governed without becoming too slow.
+The purpose of this project is to define a structured governance model for AI cyber defense systems that can respond quickly without becoming lawless, remain governed without becoming too slow, and preserve institutional consistency across ranks, articles, traces, governance review, and human oversight.
