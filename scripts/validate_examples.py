@@ -39,6 +39,11 @@ VALIDATION_TARGETS = [
         "schema": "schemas/defense-trace-record.schema.json",
         "example": "examples/defense-trace-record.example.yaml",
     },
+    {
+    "name": "Defense Agent Rank",
+    "schema": "schemas/defense-agent-rank.schema.json",
+    "example": "examples/defense-agent-rank.example.yaml",
+}
 ]
 
 
