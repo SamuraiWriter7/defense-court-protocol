@@ -9,11 +9,12 @@ It defines a structured defensive operating model for multi-agent AI systems by 
 * traceability
 * emergency containment
 * governance review
+* semantic alignment checks
 * human oversight
 
 The goal is not to create a status hierarchy among AI agents.
 
-The goal is to define **responsibility, authority, traceability, review, and safe defensive coordination**.
+The goal is to define **responsibility, authority, traceability, review, safe defensive coordination, and institutional consistency**.
 
 ---
 
@@ -314,6 +315,7 @@ examples/
 
 scripts/
   validate_examples.py
+  check_constitution_alignment.py
 
 .github/
   workflows/
@@ -324,7 +326,23 @@ scripts/
 
 ## Validation
 
-This repository validates YAML examples against JSON Schemas.
+This repository performs two layers of validation:
+
+```text
+Schema Validation
+  Checks whether YAML examples conform to JSON Schemas.
+
+Semantic Validation
+  Checks whether the Trace, Rank, and Constitution examples are institutionally aligned.
+```
+
+Together, these validations ensure both structural correctness and governance consistency.
+
+---
+
+## Schema Validation
+
+Schema validation checks whether each YAML example matches its corresponding JSON Schema.
 
 Required Python packages:
 
@@ -339,7 +357,7 @@ Install dependencies:
 pip install pyyaml jsonschema
 ```
 
-Run validation:
+Run schema validation:
 
 ```bash
 python scripts/validate_examples.py
@@ -360,6 +378,94 @@ Validation passed.
 All validations passed.
 ```
 
+Current schema validation targets:
+
+```text
+Defense Trace Record
+  Schema:  schemas/defense-trace-record.schema.json
+  Example: examples/defense-trace-record.example.yaml
+
+Defense Agent Rank
+  Schema:  schemas/defense-agent-rank.schema.json
+  Example: examples/defense-agent-rank.example.yaml
+
+Cyber Defense Constitution
+  Schema:  schemas/cyber-defense-constitution.schema.json
+  Example: examples/cyber-defense-constitution.example.yaml
+```
+
+---
+
+## Semantic Validation
+
+Semantic validation checks whether the validated examples are meaningfully aligned as a governance system.
+
+It is performed by:
+
+```text
+scripts/check_constitution_alignment.py
+```
+
+This script checks consistency across:
+
+```text
+examples/defense-trace-record.example.yaml
+examples/defense-agent-rank.example.yaml
+examples/cyber-defense-constitution.example.yaml
+```
+
+It verifies conditions such as:
+
+```text
+Trace Record applicable article IDs exist in the Cyber Defense Constitution.
+Trace Record applicable article names match the Constitution article titles.
+Trace Record acting_agent.rank exists in the Defense Agent Rank document.
+Trace Record rank_authority matches acting_agent.rank.
+Emergency containment references the required Articles 5, 6, and 9.
+Critical incidents do not bypass human review.
+Recovery actions require proper governance approval.
+Constitution module definitions match article module declarations.
+```
+
+Run semantic validation:
+
+```bash
+python scripts/check_constitution_alignment.py
+```
+
+Expected output:
+
+```text
+Checking Defense Court Protocol constitution alignment...
+
+Constitution alignment passed.
+
+Errors: 0
+Warnings: 0
+
+All constitution alignment checks passed.
+```
+
+Warnings can be treated as errors by running:
+
+```bash
+python scripts/check_constitution_alignment.py --strict-warnings
+```
+
+Semantic validation is important because JSON Schema can verify document shape, but it cannot fully verify institutional meaning.
+
+In short:
+
+```text
+Schema Validation
+  = checks whether the documents are structurally valid.
+
+Semantic Validation
+  = checks whether the documents agree with each other as a governance system.
+```
+
+This gives the Defense Court Protocol both a gatekeeper and a magistrate.
+
 ---
 
 ## GitHub Actions
@@ -370,7 +476,7 @@ The repository includes a GitHub Actions workflow:
 .github/workflows/validate-examples.yml
 ```
 
-The workflow runs validation on:
+The workflow runs on:
 
 ```text
 push
@@ -378,7 +484,21 @@ pull_request
 workflow_dispatch
 ```
 
-It checks that all registered examples pass schema validation.
+It performs:
+
+```text
+1. Schema validation
+2. Constitution alignment validation
+```
+
+Workflow checks:
+
+```bash
+python scripts/validate_examples.py
+python scripts/check_constitution_alignment.py
+```
+
+This ensures that changes to schemas, examples, ranks, articles, or trace records remain both structurally valid and institutionally aligned.
 
 ---
 
@@ -398,6 +518,19 @@ Defense Agent Rank
 Cyber Defense Constitution
   Schema:  schemas/cyber-defense-constitution.schema.json
   Example: examples/cyber-defense-constitution.example.yaml
+```
+
+Current semantic alignment inputs:
+
+```text
+Trace Example:
+  examples/defense-trace-record.example.yaml
+
+Rank Example:
+  examples/defense-agent-rank.example.yaml
+
+Constitution Example:
+  examples/cyber-defense-constitution.example.yaml
 ```
 
 ---
@@ -491,6 +624,7 @@ v0.2
   - expanded severity model
   - incident lifecycle status
   - evidence reference fields
+  - expanded semantic alignment checks
 
 v0.3
   - authority matrix between ranks and action classes
@@ -527,6 +661,7 @@ Defense Kernel for emergency response.
 Trace for accountability.
 Governance for safety.
 Human Review for legitimacy.
+Semantic Validation for institutional consistency.
 ```
 
 In this model:
@@ -537,6 +672,7 @@ The Seventeen-Article Charter forms the defensive discipline.
 The Trace Protocol forms the battle record.
 The Governance Layer prevents overreach.
 The Human Review Layer preserves final responsibility.
+The Semantic Alignment Checker verifies institutional consistency.
 ```
 
 The result is an AI cyber defense system that can act quickly without becoming lawless, and remain governed without becoming too slow.
