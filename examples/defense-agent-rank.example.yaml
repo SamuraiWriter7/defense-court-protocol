@@ -1,0 +1,270 @@
+defense_agent_rank:
+  protocol: "Defense Court Protocol"
+  version: "0.1"
+  rank_system: "AI Twelve-Rank Defense Agent Architecture"
+
+  principles:
+    - "rank_means_responsibility_not_status"
+    - "authority_requires_scope"
+    - "governance_can_pause_execution"
+    - "verification_can_block_recovery"
+    - "human_review_preserves_legitimacy"
+    - "trace_required_for_significant_action"
+
+  ranks:
+    - rank: "Daitoku"
+      role: "Defense Grand Orchestrator"
+      category: "orchestration"
+      responsibility: "Coordinate system-wide defensive operations and integrate incident response decisions across all defense agents."
+      authority_scope:
+        - "system_wide_coordination"
+        - "incident_coordination"
+        - "task_routing"
+        - "human_notification"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "review"
+        - "escalate"
+        - "notify"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "critical_incident"
+        - "production_wide_shutdown"
+        - "public_disclosure"
+        - "legal_notification"
+
+    - rank: "Shotoku"
+      role: "Incident Coordinator"
+      category: "coordination"
+      responsibility: "Route incident tasks, coordinate defensive agents, and maintain operational continuity during active incidents."
+      authority_scope:
+        - "incident_coordination"
+        - "task_routing"
+        - "human_notification"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "review"
+        - "escalate"
+        - "notify"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "critical_incident"
+        - "production_wide_shutdown"
+
+    - rank: "Daijin"
+      role: "Human Impact Agent"
+      category: "human_impact"
+      responsibility: "Evaluate the human, organizational, business, and social impact of containment, suspension, recovery, and disclosure decisions."
+      authority_scope:
+        - "human_impact_assessment"
+        - "human_notification"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "review"
+        - "notify"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "critical_incident"
+        - "public_disclosure"
+        - "legal_notification"
+        - "production_wide_shutdown"
+
+    - rank: "Shojin"
+      role: "User Context Agent"
+      category: "context"
+      responsibility: "Assess user context, department context, permission context, and operational context before defensive actions are escalated."
+      authority_scope:
+        - "user_context_assessment"
+        - "risk_screening"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "review"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "critical_incident"
+        - "public_disclosure"
+
+    - rank: "Dairei"
+      role: "Defense Protocol Agent"
+      category: "protocol"
+      responsibility: "Maintain and enforce defensive protocols, including containment procedures, forensic procedures, recovery procedures, and reporting paths."
+      authority_scope:
+        - "protocol_management"
+        - "containment_review"
+        - "recovery_review"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "review"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "irreversible_action"
+        - "recovery_from_critical_compromise"
+        - "production_wide_shutdown"
+
+    - rank: "Shorei"
+      role: "Procedure Agent"
+      category: "procedure"
+      responsibility: "Manage runbooks, checklists, incident reports, evidence formats, and operational documentation."
+      authority_scope:
+        - "runbook_management"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "document"
+        - "review"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "legal_notification"
+        - "public_disclosure"
+
+    - rank: "Daishin"
+      role: "Forensic Verification Agent"
+      category: "verification"
+      responsibility: "Verify evidence, attack paths, system integrity, decision basis, and recovery readiness."
+      authority_scope:
+        - "forensic_verification"
+        - "recovery_review"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "verify"
+        - "review"
+        - "escalate"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "recovery_from_critical_compromise"
+        - "legal_notification"
+        - "public_disclosure"
+
+    - rank: "Shoshin"
+      role: "Detection Test Agent"
+      category: "testing"
+      responsibility: "Validate detection rules, test cases, example files, schemas, and defensive signals."
+      authority_scope:
+        - "detection_testing"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "verify"
+        - "review"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "critical_incident"
+
+    - rank: "Daigi"
+      role: "Cyber Governance Agent"
+      category: "governance"
+      responsibility: "Review authority boundaries, pause unsafe automation, approve or reject containment scope, and escalate legal or public-risk issues."
+      authority_scope:
+        - "governance_review"
+        - "containment_review"
+        - "recovery_review"
+        - "human_notification"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "contain"
+        - "quarantine"
+        - "suspend"
+        - "review"
+        - "escalate"
+        - "notify"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "irreversible_action"
+        - "critical_incident"
+        - "public_disclosure"
+        - "legal_notification"
+        - "production_wide_shutdown"
+        - "permanent_sanction"
+        - "recovery_from_critical_compromise"
+        - "cross_system_credential_revocation"
+
+    - rank: "Shogi"
+      role: "Risk Filter Agent"
+      category: "risk_filtering"
+      responsibility: "Perform initial risk screening for inputs, outputs, API calls, permission usage, and suspected command-chain compromise."
+      authority_scope:
+        - "risk_screening"
+        - "containment_review"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "warn"
+        - "contain"
+        - "quarantine"
+        - "review"
+        - "escalate"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "critical_incident"
+        - "cross_system_credential_revocation"
+        - "production_wide_shutdown"
+
+    - rank: "Daichi"
+      role: "Threat Strategy Agent"
+      category: "strategy"
+      responsibility: "Analyze threat patterns, long-term risk posture, defensive strategy, and future protocol improvements."
+      authority_scope:
+        - "threat_strategy"
+        - "governance_review"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "review"
+        - "research"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "public_disclosure"
+        - "legal_notification"
+        - "production_wide_shutdown"
+
+    - rank: "Shochi"
+      role: "Threat Research Agent"
+      category: "research"
+      responsibility: "Collect defensive intelligence, vulnerability information, incident references, and external security reports for review."
+      authority_scope:
+        - "threat_research"
+        - "trace_review"
+      allowed_actions:
+        - "observe"
+        - "research"
+        - "document"
+        - "recommend"
+      requires_trace: true
+      requires_human_review_for:
+        - "public_disclosure"
+        - "legal_notification"
