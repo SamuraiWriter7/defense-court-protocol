@@ -11,7 +11,7 @@ on:
 
 jobs:
   validate-examples:
-    name: Validate YAML examples against JSON Schemas
+    name: Validate schemas and constitution alignment
     runs-on: ubuntu-latest
 
     steps:
@@ -28,6 +28,11 @@ jobs:
           python -m pip install --upgrade pip
           pip install pyyaml jsonschema
 
-      - name: Validate examples
+      - name: Validate YAML examples against JSON Schemas
         run: |
           python scripts/validate_examples.py
+
+      - name: Check constitution alignment
+        run: |
+          python scripts/check_constitution_alignment.py
+
