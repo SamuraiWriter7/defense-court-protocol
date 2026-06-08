@@ -34,21 +34,21 @@ REPO_ROOT = Path(__file__).resolve().parents[1]
 
 
 VALIDATION_TARGETS = [
-    {
+       {
         "name": "Defense Trace Record",
         "schema": "schemas/defense-trace-record.schema.json",
         "example": "examples/defense-trace-record.example.yaml",
     },
     {
-    "name": "Defense Agent Rank",
-    "schema": "schemas/defense-agent-rank.schema.json",
-    "example": "examples/defense-agent-rank.example.yaml",
-}
+        "name": "Defense Agent Rank",
+        "schema": "schemas/defense-agent-rank.schema.json",
+        "example": "examples/defense-agent-rank.example.yaml",
+    },
     {
-    "name": "Cyber Defense Constitution",
-    "schema": "schemas/cyber-defense-constitution.schema.json",
-    "example": "examples/cyber-defense-constitution.example.yaml",
-}
+        "name": "Cyber Defense Constitution",
+        "schema": "schemas/cyber-defense-constitution.schema.json",
+        "example": "examples/cyber-defense-constitution.example.yaml",
+    },
 ]
 
 
