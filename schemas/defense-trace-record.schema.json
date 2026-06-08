@@ -1,0 +1,311 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "schemas/defense-trace-record.schema.json",
+  "title": "Defense Trace Record",
+  "description": "A trace record for emergency containment, forensic review, governance review, and human review under the Defense Court Protocol.",
+  "type": "object",
+  "required": [
+    "defense_trace_record"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "defense_trace_record": {
+      "type": "object",
+      "required": [
+        "trace_id",
+        "timestamp",
+        "severity",
+        "incident",
+        "acting_agent",
+        "constitutional_basis",
+        "action",
+        "safeguards",
+        "review"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "trace_id": {
+          "type": "string",
+          "description": "Unique identifier for the defense trace record.",
+          "pattern": "^dcp-[0-9]{4}-[0-9]{4,}$"
+        },
+        "timestamp": {
+          "type": "string",
+          "description": "Timestamp of the defense action in RFC3339 / ISO 8601 format.",
+          "format": "date-time"
+        },
+        "severity": {
+          "type": "string",
+          "description": "Severity level of the incident.",
+          "enum": [
+            "info",
+            "low",
+            "medium",
+            "high",
+            "critical"
+          ]
+        },
+        "incident": {
+          "type": "object",
+          "required": [
+            "type",
+            "summary",
+            "affected_scope"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Type of incident or suspected incident."
+            },
+            "summary": {
+              "type": "string",
+              "description": "Short summary of the incident."
+            },
+            "affected_scope": {
+              "type": "array",
+              "description": "Systems, services, agents, APIs, or workflows affected by the incident.",
+              "minItems": 1,
+              "items": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "acting_agent": {
+          "type": "object",
+          "required": [
+            "agent_id",
+            "rank",
+            "role"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "agent_id": {
+              "type": "string",
+              "description": "Identifier of the agent that performed the defense action."
+            },
+            "rank": {
+              "$ref": "#/$defs/defense_rank"
+            },
+            "role": {
+              "type": "string",
+              "description": "Operational role of the acting agent."
+            }
+          }
+        },
+        "constitutional_basis": {
+          "type": "object",
+          "required": [
+            "rank_authority",
+            "applicable_articles"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "rank_authority": {
+              "$ref": "#/$defs/defense_rank"
+            },
+            "applicable_articles": {
+              "type": "array",
+              "description": "Defense Charter articles that justify or constrain the action.",
+              "minItems": 1,
+              "items": {
+                "type": "object",
+                "required": [
+                  "id",
+                  "name"
+                ],
+                "additionalProperties": false,
+                "properties": {
+                  "id": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 17
+                  },
+                  "name": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "action": {
+          "type": "object",
+          "required": [
+            "type",
+            "decision",
+            "reversible",
+            "automation_level",
+            "reason"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "type": {
+              "type": "string",
+              "description": "Class of defense action.",
+              "enum": [
+                "observe",
+                "warn",
+                "contain",
+                "quarantine",
+                "suspend",
+                "recover",
+                "disclose",
+                "emergency_containment"
+              ]
+            },
+            "decision": {
+              "type": "string",
+              "description": "Concrete action decision."
+            },
+            "reversible": {
+              "type": "boolean",
+              "description": "Whether the action can be reversed."
+            },
+            "automation_level": {
+              "type": "string",
+              "description": "Level at which the action was taken.",
+              "enum": [
+                "manual",
+                "inner_loop_ai",
+                "outer_loop_human",
+                "hybrid"
+              ]
+            },
+            "reason": {
+              "type": "string",
+              "description": "Reason for the action."
+            }
+          }
+        },
+        "safeguards": {
+          "type": "object",
+          "required": [
+            "command_authentication",
+            "scope_check",
+            "blast_radius_limit",
+            "rollback_plan",
+            "human_notification"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "command_authentication": {
+              "$ref": "#/$defs/check_status"
+            },
+            "scope_check": {
+              "$ref": "#/$defs/check_status"
+            },
+            "blast_radius_limit": {
+              "$ref": "#/$defs/control_status"
+            },
+            "rollback_plan": {
+              "$ref": "#/$defs/availability_status"
+            },
+            "human_notification": {
+              "$ref": "#/$defs/notification_status"
+            }
+          }
+        },
+        "review": {
+          "type": "object",
+          "required": [
+            "verification_agent",
+            "governance_status",
+            "human_review_status",
+            "next_required_action"
+          ],
+          "additionalProperties": false,
+          "properties": {
+            "verification_agent": {
+              "type": "string",
+              "description": "Agent assigned to forensic or verification review."
+            },
+            "governance_status": {
+              "type": "string",
+              "enum": [
+                "pending",
+                "containment_approved",
+                "containment_rejected",
+                "recovery_blocked",
+                "recovery_approved",
+                "no_risk_detected",
+                "escalated"
+              ]
+            },
+            "human_review_status": {
+              "type": "string",
+              "enum": [
+                "not_required",
+                "pending",
+                "approved",
+                "rejected",
+                "escalated"
+              ]
+            },
+            "next_required_action": {
+              "type": "string",
+              "description": "Next required step before recovery, disclosure, closure, or escalation."
+            }
+          }
+        }
+      }
+    }
+  },
+  "$defs": {
+    "defense_rank": {
+      "type": "string",
+      "enum": [
+        "Daitoku",
+        "Shotoku",
+        "Daijin",
+        "Shojin",
+        "Dairei",
+        "Shorei",
+        "Daishin",
+        "Shoshin",
+        "Daigi",
+        "Shogi",
+        "Daichi",
+        "Shochi"
+      ]
+    },
+    "check_status": {
+      "type": "string",
+      "enum": [
+        "passed",
+        "failed",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "control_status": {
+      "type": "string",
+      "enum": [
+        "enabled",
+        "disabled",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "availability_status": {
+      "type": "string",
+      "enum": [
+        "available",
+        "unavailable",
+        "not_applicable",
+        "unknown"
+      ]
+    },
+    "notification_status": {
+      "type": "string",
+      "enum": [
+        "sent",
+        "not_sent",
+        "not_required",
+        "failed",
+        "unknown"
+      ]
+    }
+  }
+}
