@@ -44,6 +44,11 @@ VALIDATION_TARGETS = [
     "schema": "schemas/defense-agent-rank.schema.json",
     "example": "examples/defense-agent-rank.example.yaml",
 }
+    {
+    "name": "Cyber Defense Constitution",
+    "schema": "schemas/cyber-defense-constitution.schema.json",
+    "example": "examples/cyber-defense-constitution.example.yaml",
+}
 ]
 
 
