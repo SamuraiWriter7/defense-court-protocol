@@ -1,0 +1,50 @@
+defense_trace_record:
+  trace_id: "dcp-2026-0001"
+  timestamp: "2026-06-07T00:00:00Z"
+  severity: "critical"
+
+  incident:
+    type: "suspected_ai_accelerated_intrusion"
+    summary: "Abnormal privilege escalation and lateral movement indicators were detected."
+    affected_scope:
+      - "internal_api_gateway"
+      - "agent_runtime_cluster"
+
+  acting_agent:
+    agent_id: "shield-agent-01"
+    rank: "Daigi"
+    role: "Cyber Governance Agent"
+
+  constitutional_basis:
+    rank_authority: "Daigi"
+    applicable_articles:
+      - id: 3
+        name: "Authorized Command"
+      - id: 5
+        name: "Safety Over Availability"
+      - id: 6
+        name: "Containment of Harm"
+      - id: 9
+        name: "Trace and Trust"
+      - id: 17
+        name: "Collective Review"
+
+  action:
+    type: "emergency_containment"
+    decision: "isolate_affected_services"
+    reversible: true
+    automation_level: "inner_loop_ai"
+    reason: "Fast-moving attack progression was suspected and scoped containment was required."
+
+  safeguards:
+    command_authentication: "passed"
+    scope_check: "passed"
+    blast_radius_limit: "enabled"
+    rollback_plan: "available"
+    human_notification: "sent"
+
+  review:
+    verification_agent: "forensic-agent-01"
+    governance_status: "containment_approved"
+    human_review_status: "pending"
+    next_required_action: "forensic_review_before_recovery"
